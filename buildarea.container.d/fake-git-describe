@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+realgit="$(dirname "$(realpath "$0")")/git.real"
+
+if [[ $1 != describe ]]; then
+	exec "$realgit" $@
+fi
+
+if [[ $FAKE_GIT_DESCRIBE ]]; then
+	echo $FAKE_GIT_DESCRIBE
+else
+	echo "Ref Unknown" >&2
+	exit 2
+fi
+

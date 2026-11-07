@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -ex
+
+SOURCEDIR=/mnt/kalico
+CONFNAME="${1?dictname needed}"
+DICTDIR="${2?dictdir needed}"
+
+make -C "$SOURCEDIR" clean
+cp "$SOURCEDIR/test/configs/$CONFNAME.config" "$SOURCEDIR/.config"
+make -C "$SOURCEDIR" olddefconfig
+make -C "$SOURCEDIR" out/compile_time_request.o
+cp "$SOURCEDIR/out/klipper.dict" "$DICTDIR/$CONFNAME.dict"
