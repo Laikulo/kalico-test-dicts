@@ -1,0 +1,3 @@
+[submodule "kalico"]
+	path = kalico
+	url = https://github.com/kalicocrew/kalico.git
